@@ -1,4 +1,4 @@
-# go-resque
+# go-resque [![Build Status](https://travis-ci.org/chambo-e/go-resque.svg?branch=master)](https://travis-ci.org/chambo-e/go-resque) [![GoDoc](https://godoc.org/github.com/chambo-e/go-resque?status.svg)](https://godoc.org/github.com/chambo-e/go-resque)
 
 A simple go package to enqueue jobs to a resque queue
 
