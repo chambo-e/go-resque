@@ -1,0 +1,43 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "JtXTQXRlxRB///NYmPDuMpEpvNI=",
+			"path": "gopkg.in/redis.v5",
+			"revision": "854c88a72c8bb9c09936145aef886b7697d6b995",
+			"revisionTime": "2016-12-03T15:45:52Z"
+		},
+		{
+			"checksumSHA1": "vQSE4FOH4EvyzYA72w60XOetmVY=",
+			"path": "gopkg.in/redis.v5/internal",
+			"revision": "854c88a72c8bb9c09936145aef886b7697d6b995",
+			"revisionTime": "2016-12-03T15:45:52Z"
+		},
+		{
+			"checksumSHA1": "2Ek4SixeRSKOX3mUiBMs3Aw+Guc=",
+			"path": "gopkg.in/redis.v5/internal/consistenthash",
+			"revision": "854c88a72c8bb9c09936145aef886b7697d6b995",
+			"revisionTime": "2016-12-03T15:45:52Z"
+		},
+		{
+			"checksumSHA1": "rJYVKcBrwYUGl7nuuusmZGrt8mY=",
+			"path": "gopkg.in/redis.v5/internal/hashtag",
+			"revision": "854c88a72c8bb9c09936145aef886b7697d6b995",
+			"revisionTime": "2016-12-03T15:45:52Z"
+		},
+		{
+			"checksumSHA1": "VnsHRPAMRMuhz7/n/85MZwMrchQ=",
+			"path": "gopkg.in/redis.v5/internal/pool",
+			"revision": "854c88a72c8bb9c09936145aef886b7697d6b995",
+			"revisionTime": "2016-12-03T15:45:52Z"
+		},
+		{
+			"checksumSHA1": "604uyPTNWLBNAnAyNRMiwYHXknA=",
+			"path": "gopkg.in/redis.v5/internal/proto",
+			"revision": "854c88a72c8bb9c09936145aef886b7697d6b995",
+			"revisionTime": "2016-12-03T15:45:52Z"
+		}
+	],
+	"rootPath": "github.com/chambo-e/go-resque"
+}
