@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "+4r0PnLwwyhO5/jvU5R/TEJb4kA=",
+			"path": "gopkg.in/bsm/ratelimit.v1",
+			"revision": "db14e161995a5177acef654cb0dd785e8ee8bc22",
+			"revisionTime": "2016-02-20T15:49:07Z"
+		},
+		{
 			"checksumSHA1": "JtXTQXRlxRB///NYmPDuMpEpvNI=",
 			"path": "gopkg.in/redis.v5",
 			"revision": "854c88a72c8bb9c09936145aef886b7697d6b995",
