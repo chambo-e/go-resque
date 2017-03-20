@@ -19,7 +19,7 @@ install:
     - go get github.com/stretchr/testify/require
 
 script:
-    - go test -v -race -cover -covermode=atomic $(go list ./... | grep -v /vendor/)
+    - go test -v-race -coverprofile=coverage.txt -covermode=atomic
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
