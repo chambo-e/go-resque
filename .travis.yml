@@ -20,3 +20,6 @@ install:
 
 script:
     - go test -v -race -cover -covermode=atomic $(go list ./... | grep -v /vendor/)
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
