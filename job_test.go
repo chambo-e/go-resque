@@ -3,7 +3,7 @@ package resque
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestNewJob(t *testing.T) {
@@ -32,7 +32,7 @@ func TestNewJob(t *testing.T) {
 	for _, test := range tests {
 		job := NewJob(test.klass, test.args...)
 
-		assert.Equal(t, Job{
+		require.Equal(t, Job{
 			Args:  test.args,
 			Class: test.klass,
 		}, job, "should be equal")
@@ -70,15 +70,15 @@ func TestJob_Marshal(t *testing.T) {
 	for _, test := range tests {
 		job := NewJob(test.klass, test.args...)
 
-		assert.Equal(t, Job{
+		require.Equal(t, Job{
 			Args:  test.args,
 			Class: test.klass,
 		}, job, "should be equal")
 
 		buffer, err := job.Marshal()
-		assert.Nil(t, err, "should be nil")
+		require.Nil(t, err, "should be nil")
 
-		assert.Equal(t, buffer, test.expected, "should be equal")
+		require.Equal(t, buffer, test.expected, "should be equal")
 	}
 
 }

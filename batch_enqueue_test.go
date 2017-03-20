@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestBatch_Enqueue(t *testing.T) {
@@ -48,17 +48,17 @@ func TestBatch_Enqueue(t *testing.T) {
 	cli, err := New(Configuration{
 		RedisURI: "redis://localhost:6379",
 	})
-	assert.Nil(t, err, "should be nil")
-	assert.NotNil(t, cli, "should not be nil")
+	require.Nil(t, err, "should be nil")
+	require.NotNil(t, cli, "should not be nil")
 
 	for _, test := range tests {
 		batch, err := cli.NewBatch(test.queue)
-		assert.Nil(t, err, "should be nil")
+		require.Nil(t, err, "should be nil")
 
 		batch.Enqueue(test.jobs...)
 
-		assert.Equal(t, test.queue, batch.queue, "should be of same queue")
-		assert.Equal(t, len(test.jobs), len(batch.jobs), "should be of same size")
+		require.Equal(t, test.queue, batch.queue, "should be of same queue")
+		require.Equal(t, len(test.jobs), len(batch.jobs), "should be of same size")
 	}
 }
 
@@ -108,22 +108,22 @@ func TestBatch_Execute(t *testing.T) {
 	cli, err := New(Configuration{
 		RedisURI: "redis://localhost:6379",
 	})
-	assert.Nil(t, err, "should be nil")
-	assert.NotNil(t, cli, "should not be nil")
+	require.Nil(t, err, "should be nil")
+	require.NotNil(t, cli, "should not be nil")
 
 	for _, test := range tests {
 		batch, err := cli.NewBatch(test.queue)
-		assert.Nil(t, err, "should be nil")
+		require.Nil(t, err, "should be nil")
 
 		batch.Enqueue(test.jobs...)
 
 		err = batch.Execute()
 
 		if test.shouldSuccess {
-			assert.Nil(t, err, "should be nil")
-			assert.Empty(t, batch.jobs, "should be emptied")
+			require.Nil(t, err, "should be nil")
+			require.Empty(t, batch.jobs, "should be emptied")
 
-			assert.Contains(
+			require.Contains(
 				t,
 				cli.redisClient.SMembers(
 					fmt.Sprintf("%s:queues", cli.namespace),
@@ -132,7 +132,7 @@ func TestBatch_Execute(t *testing.T) {
 				"resque queues should contain +\""+test.queue+"\"",
 			)
 
-			assert.Equal(
+			require.Equal(
 				t,
 				int64(len(test.jobs)),
 				cli.redisClient.LLen(
@@ -141,9 +141,9 @@ func TestBatch_Execute(t *testing.T) {
 				"resque queue length should be the same of the amount of jobs",
 			)
 		} else {
-			assert.NotNil(t, err, "should not be nil")
+			require.NotNil(t, err, "should not be nil")
 		}
 
-		assert.Nil(t, cli.redisClient.FlushDb().Err(), "FLUSHDB should have succedeed")
+		require.Nil(t, cli.redisClient.FlushDb().Err(), "FLUSHDB should have succedeed")
 	}
 }

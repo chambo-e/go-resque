@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestClient_Enqueue(t *testing.T) {
@@ -33,16 +33,16 @@ func TestClient_Enqueue(t *testing.T) {
 	cli, err := New(Configuration{
 		RedisURI: "redis://localhost:6379",
 	})
-	assert.Nil(t, err, "should be nil")
-	assert.NotNil(t, cli, "should not be nil")
+	require.Nil(t, err, "should be nil")
+	require.NotNil(t, cli, "should not be nil")
 
 	for _, test := range tests {
 		err := cli.Enqueue(test.queue, test.job)
 
 		if test.shouldSuccess {
-			assert.Nil(t, err, "should be nil")
+			require.Nil(t, err, "should be nil")
 
-			assert.Contains(
+			require.Contains(
 				t,
 				cli.redisClient.SMembers(
 					fmt.Sprintf("%s:queues", cli.namespace),
@@ -51,7 +51,7 @@ func TestClient_Enqueue(t *testing.T) {
 				"resque queues should contain +\""+test.queue+"\"",
 			)
 
-			assert.Equal(
+			require.Equal(
 				t,
 				int64(1),
 				cli.redisClient.LLen(
@@ -60,9 +60,9 @@ func TestClient_Enqueue(t *testing.T) {
 				"resque queue length should be the same of the amount of jobs",
 			)
 		} else {
-			assert.NotNil(t, err, "should not be nil")
+			require.NotNil(t, err, "should not be nil")
 		}
 
-		assert.Nil(t, cli.redisClient.FlushDb().Err(), "FLUSHDB should have succedeed")
+		require.Nil(t, cli.redisClient.FlushDb().Err(), "FLUSHDB should have succedeed")
 	}
 }

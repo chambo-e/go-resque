@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestNew(t *testing.T) {
@@ -63,17 +63,17 @@ func TestNew(t *testing.T) {
 		cli, err := New(test.cfg)
 
 		if test.shouldSuccess {
-			assert.Nil(t, err, "should be nil")
-			assert.NotNil(t, cli, "should not be nil")
+			require.Nil(t, err, "should be nil")
+			require.NotNil(t, cli, "should not be nil")
 
 			if test.cfg.Namespace != "" {
-				assert.Equal(t, cli.namespace, test.cfg.Namespace, "should have set namespace")
+				require.Equal(t, cli.namespace, test.cfg.Namespace, "should have set namespace")
 			} else {
-				assert.Equal(t, "resque", cli.namespace, "should have set default namespace")
+				require.Equal(t, "resque", cli.namespace, "should have set default namespace")
 			}
 		} else {
-			assert.NotNil(t, err, "should not be nil")
-			assert.Nil(t, cli, "should be nil")
+			require.NotNil(t, err, "should not be nil")
+			require.Nil(t, cli, "should be nil")
 		}
 
 	}

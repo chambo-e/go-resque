@@ -3,7 +3,7 @@ package resque
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestClient_NewBatch(t *testing.T) {
@@ -32,16 +32,16 @@ func TestClient_NewBatch(t *testing.T) {
 	cli, err := New(Configuration{
 		RedisURI: "redis://localhost:6379",
 	})
-	assert.Nil(t, err, "should be nil")
-	assert.NotNil(t, cli, "should not be nil")
+	require.Nil(t, err, "should be nil")
+	require.NotNil(t, cli, "should not be nil")
 
 	for _, test := range tests {
 		batch, err := cli.NewBatch(test.queue)
 		if test.shouldSuccess {
-			assert.Nil(t, err, "should be nil")
-			assert.Equal(t, test.queue, batch.queue, "should be of same queue")
+			require.Nil(t, err, "should be nil")
+			require.Equal(t, test.queue, batch.queue, "should be of same queue")
 		} else {
-			assert.NotNil(t, err, "should not be nil")
+			require.NotNil(t, err, "should not be nil")
 		}
 	}
 }
